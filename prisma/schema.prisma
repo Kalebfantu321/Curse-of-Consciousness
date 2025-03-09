@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// model schema for product launch and other stuff maybe
+model Product {
+  id String @id @default(uuid())  //this is a primary key for data access for 
+  name String
+  description String?
+  price Float
+  imageUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  OrderItem OrderItem[] //orderitem object
+}
+
+model User {
+  id String @id @default(uuid())
+  email String @unique
+  password String
+  orders Order[] //Order object
+}
+
+
+model Order {
+  id String @id @default(uuid())
+  userId     String
+  total      Float
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  orderItems OrderItem[] //orderItem object
+  }
+
+  model OrderItem{
+    id String @id @default(uuid())
+    orderId String
+    productID String
+    quantity Int
+    order Order @relation(fields:  [orderId], references: [id])
+    product Product @relation(fields: [productID], references: [id])
+  }
+

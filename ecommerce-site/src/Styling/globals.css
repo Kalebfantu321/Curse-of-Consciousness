@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #b77373;
+  --primary-gradient: linear-gradient(45deg, #ff6e6e, #ff8d32, #b44ee8, #4c9e9e);
+  --neon-text: #ff00ff;
+  --font-sans: 'Fredoka One', Cursive;
+  --font-mono: 'Rock Salt', cursive;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary-gradient: linear-gradient(100deg, #0f0000, #0d0212, #2d87c0, #250e2e);
+    --neon-text: #1d1d01;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--primary-gradient);
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--neon-text);
+  text-shadow: 4px 4px 15px rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+p {
+  font-family: var(--font-mono);
+  color: var(--foreground);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+}
+
+a {
+  text-decoration: none;
+  color: var(--neon-text);
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+button {
+  background-color: var(--foreground);
+  color: var(--background);
+  border: 2px solid var(--neon-text);
+  border-radius: 30px;
+  font-size: 1.2rem;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+
+/* Floating animation for text */
+@keyframes gradientBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0% { transform: translateY(-10px); }
+  100% { transform: translateY(10px); }
+}
